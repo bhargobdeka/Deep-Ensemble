@@ -1,12 +1,3 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Fri Jan 27 13:12:30 2023
-
-@author: bhargobdeka
-"""
-
-#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
 Created on Fri Jan 28 17:14:49 2022
@@ -14,12 +5,7 @@ Created on Fri Jan 28 17:14:49 2022
 @author: bhargobdeka
 """
 
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Nov 29 14:27:24 2021
-Deep Ensembles
-@author: BD
-"""
+
 #import pandas as pd
 import zipfile
 import urllib.request
@@ -148,8 +134,8 @@ for j in range(len(data_name)):
     Y = data[ : , index_target.tolist() ]
     input_dim = X.shape[1]
     
-    if os.path.isfile("results_DVI/log_{}.txt".format(data_name[j])):
-        os.remove("results_DVI/log_{}.txt".format(data_name[j]))
+    if os.path.isfile("results_DE/log_{}.txt".format(data_name[j])):
+        os.remove("results_DE/log_{}.txt".format(data_name[j]))
 #    from subprocess import call
 #    call(["rm", "results/log_{}.txt".format(data_name[j])], shell=True)
     _RESULTS_lltest = data_name[j] + "/results_DE/lltest_DE.txt"
@@ -258,7 +244,7 @@ for j in range(len(data_name)):
             test_ystd  = np.std(Y_true)
             test_ymean = np.mean(Y_true)
             
-            # define to normalize or not
+            #%% define to normalize or not
             normalize = 0
             if normalize == 1:
                 Y_true = (Y_true - test_ymean)/test_ystd
@@ -289,8 +275,12 @@ for j in range(len(data_name)):
     print("best LL"+str(mean_ll[-1]))
     
     plt.scatter(range(num_epochs), mean_ll)
+    plt.xlabel('Epoch')
+    plt.ylabel('LL')
     plt.show()
     plt.scatter(range(num_epochs), mean_RMSE)
+    plt.xlabel('Epoch')
+    plt.ylabel('RMSE')
     plt.show()
       
     # with open(_RESULTS_lltest, "w") as myfile:
